@@ -162,6 +162,6 @@ app.get('/f', async(req, res) => {
   res.status(200).send(c[5].avatar_url)
 });
 
-app.listen(3001, () => {
+app.listen(process.env.PORT || 3001, () => {
   console.log('Aplicação ouvindo na porta ');
 });
