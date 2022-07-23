@@ -4,7 +4,9 @@ const { Octokit } = require('@octokit/rest');
 require('dotenv').config()
 
 const app = express();
+app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(express.static('uploads'));
 
 const port = process.env.PORT || 3001;
 
