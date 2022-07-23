@@ -3,14 +3,6 @@ const bodyParser = require('body-parser');
 const { Octokit } = require('@octokit/rest');
 require('dotenv').config()
 
-app.use(express.urlencoded({ extended: true }));
-
-const multer = require('multer');
-
-app.use(express.static('public'));
-
-const parser = multer({ dest: 'public/uploads/' })
-
 const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.json());
