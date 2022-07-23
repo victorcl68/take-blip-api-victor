@@ -28,7 +28,9 @@ app.get('/repos/:repo/:key', async(req, res) => {
   const githubProjects = githubApiResponse.data.items
   const sortedProjects = githubProjects.sort(compareDates)
 
-  res.status(200).send(JSON.stringify(sortedProjects[repo][key]))
+  const projectWithoutQuotes = sortedProjects[repo][key].replace(/"/g, "");
+
+  res.status(200).send(projectWithoutQuotes);
 });
 
 app.get('/image-url', async(_req, res) => {
