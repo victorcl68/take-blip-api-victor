@@ -8,6 +8,10 @@ app.use(bodyParser.json());
 
 
 app.get('/', async(req, res) => {
+  const octokit = new Octokit({
+    auth: ''
+  })
+
   const result = await octokit.request('GET /search/repositories', {
     q: "org:takenet language:c#",
   })
