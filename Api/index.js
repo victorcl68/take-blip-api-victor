@@ -41,10 +41,6 @@ app.get('/image-url', async(_req, res) => {
   res.status(200).send(githubApiResponse.data.avatar_url)
 });
 
-app.get('/teste', async(_req, res) => {
-  res.status(200).send("https://take-blip-api-victor.herokuapp.com/images/be.png".replace(/"/g, ""))
-});
-
 app.listen(port, () => {
   console.log(`Aplicação rodando na porta ${port}`);
 });
