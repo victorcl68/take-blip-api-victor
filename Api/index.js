@@ -1,20 +1,20 @@
+require('dotenv').config()
 const express = require('express');
 const bodyParser = require('body-parser');
 const { Octokit } = require('@octokit/rest');
-require('dotenv').config()
 
 const app = express();
-app.use(express.urlencoded({ extended: true }));
+const port = process.env.PORT || 3001;
+
 app.use(bodyParser.json());
 app.use(express.static('uploads'));
-
-const port = process.env.PORT || 3001;
+app.use(express.urlencoded({ extended: true }));
 
 const octokit = new Octokit({
   auth: ''
 })
 
-function compareDates(a,b) {
+const compareDates = (a,b) => {
   return new Date(a.created_at) - new Date(b.created_at);
 }
 
@@ -31,14 +31,6 @@ app.get('/repos/:repo/:key', async(req, res) => {
   const projectWithoutQuotes = sortedProjects[repo][key].replace(/"/g, "");
 
   res.status(200).send(projectWithoutQuotes);
-});
-
-app.get('/image-url', async(_req, res) => {
-  const githubApiResponse = await octokit.request('GET /users/{username}', {
-    username: "takenet"
-  })
-
-  res.status(200).send(githubApiResponse.data.avatar_url)
 });
 
 app.listen(port, () => {
